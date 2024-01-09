@@ -3,7 +3,6 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource } from '@angular/material/tree';
-import { TreeServiceService } from './tree-service.service';
 
 interface MenuNode {
   id: number;
@@ -49,7 +48,7 @@ export class AppComponent {
   );
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(private httpClient: HttpClient, private serivce: TreeServiceService) {
+  constructor(private httpClient: HttpClient) {
     this.httpClient.get<any[]>("http://49.249.110.2:8050/api/MenuMasters/GetMenuMasterList/173")
       .pipe(
         catchError(this.errorHandler)
